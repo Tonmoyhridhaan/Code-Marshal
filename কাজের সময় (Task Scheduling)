@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define sf scanf
+#define pf printf
+#define pb push_back
+#define pob pop_back
+#define all(a) a.begin(),a.end()
+#define fio ios_base::sync_with_stdio(false); cin.tie(0);cout.tie(0);
+#define i64 long long int
+#define mem(x,y) memset(x,y,sizeof(x))
+#define fill(arr,b) fill(arr, arr+sizeof(arr)/sizeof(arr[0]), b)
+#define pii pair<int,int>
+
+const double pi = 2*acos(0);
+const int maxn = (i64)2e5+5;
+pii arr[100008];
+pii v[100008];
+bool status[100008];
+int main()
+{
+    fio;
+    int n,q;
+    cin>>n;
+    for(int i = 0 ; i<n ; i++) cin>>arr[i].first>>arr[i].second;
+    sort(arr,arr+n);
+    cin>>q;
+    for(int i = 0 ; i<q ; i++)
+    {
+        cin>>v[i].first;
+        v[i].second = i;
+    }
+    sort(v,v+q);
+    int j= 0;
+    for(int i = 0 ; i<q; i++)
+    {
+        while(j<n && v[i].first>arr[j].second) j++;
+        if(j<n && arr[j].first <= v[i].first) status[v[i].second] = 1;
+    }
+    for(int i = 0 ; i<q ; i++)
+    {
+        if(status[i] == 1) cout<<"YES\n";
+        else cout<<"NO\n";
+    }
+
+return 0;
+}
